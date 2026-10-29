@@ -1,0 +1,10 @@
+CREATE TABLE events (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(4000) NOT NULL,
+    venue VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    latitude DOUBLE PRECISION NOT NULL,
+    longitude DOUBLE PRECISION NOT NULL,
+    starts_at TIMESTAMP NOT NULL
+);

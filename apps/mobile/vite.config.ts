@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import * as esbuild from 'esbuild';
 import { readFileSync } from 'fs';
+import path from 'path';
 
 const extensions = [
   '.mjs',
@@ -33,6 +34,10 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/mobile',
   define: {
     global: 'window',
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'development'),
+    'process.env.EXPO_PUBLIC_API_URL': JSON.stringify(
+      process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8080'
+    ),
   },
   resolve: {
     extensions,
@@ -53,10 +58,16 @@ export default defineConfig({
   },
   server: {
     port: 4200,
-    host: 'localhost',
+    host: '0.0.0.0',
+    strictPort: true,
+    hmr: {
+      clientPort: 4200,
+    },
+    watch: {
+      usePolling: process.env.CHOKIDAR_USEPOLLING === 'true',
+    },
     fs: {
-      // Allow serving files from one level up to the project root
-      allow: ['..'],
+      allow: [path.resolve(__dirname, '../..')],
     },
   },
   preview: {

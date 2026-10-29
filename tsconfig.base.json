@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@startup/shared": ["libs/shared/src/index.ts"],
+      "@startup/features/auth": ["libs/features/auth/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

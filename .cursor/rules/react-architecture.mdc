@@ -1,0 +1,15 @@
+---
+description: Camadas e imports do monorepo React Native Startup
+globs: apps/mobile/**/*.{ts,tsx},libs/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Arquitetura React (Startup)
+
+- Pages em `apps/mobile/src/pages/` — finas, compõem features.
+- Negócio em `libs/features/<name>/` (hooks, services, components).
+- UI/API compartilhados em `libs/shared/`.
+- Fluxo de dados: UI → hook → service → `apiClient` (sem fetch em componentes).
+- Estado de servidor: TanStack Query. Estado global de cliente: Redux Toolkit (`docs/redux.md`).
+- Features não importam outras features; shared não importa features.
+- Detalhes: `docs/architecture.md` e skill `.cursor/skills/react-architecture/`.

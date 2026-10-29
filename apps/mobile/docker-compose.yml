@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "4200:4200"
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ../..:/workspace
+      - web_node_modules:/workspace/node_modules
+
+volumes:
+  web_node_modules:
